@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Countdown</title>
+<style>
+    body{padding:10% 8px;}
+    .contenter {width:100%;line-height:500px;color:#333; text-align: center;}
+    #showTime{color:red;font-weight: bold;font-size: 2rem; margin:0 15px;}
+</style>
+</head>
+
+<body>
+    <div class="contenter">Pat还有<span id="showTime"></span>生日</div>
+</body>
+</html>
+
+<script>
+    window.onload=function(){
+        function returnValue(){
+            var timeover=new Date("2016/9/12,23:00:00");
+            //结束时间
+            var newtime = new Date();
+            //当前时间
+            var time= timeover.getTime()-newtime.getTime();
+            //转成毫秒
+            day= parseInt(time/(1000*60*60*24));
+            //转换成天
+            hours= parseInt((time/(1000*60*60))%24);
+            //转换成小时
+            minutes=  parseInt((time/(1000*60))%60);
+            //转换成分钟
+            getTime=   parseInt((time/(1000))%60);
+            if (getTime<10) {
+                    getTime="0"+getTime;
+                    //当getTime小于10的时候在getTime前面加个0
+                }
+                else
+                {
+                    getTime=getTime;
+                    //否则getTime等于getTime
+                }
+           //转换成秒
+            document.getElementById("showTime").innerHTML=day+"&nbsp;天&nbsp;"+hours+"&nbsp;小时&nbsp;"+minutes+"&nbsp;分&nbsp;"+getTime+"&nbsp;秒";
+            //倒计时显示
+            if(time<=0){
+                //判断倒计时的时间是否为零，为零是执行下一段函数
+            document.getElementById("showTime").innerHTML="结束";
+            clearInterval(returnValue);
+            //返回returnValue
+            }
+        }
+           returnValue()
+           var returnValue=setInterval(returnValue,500);
+    }
+   
+</script>
